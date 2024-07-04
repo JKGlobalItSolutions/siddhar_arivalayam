@@ -1,5 +1,10 @@
-.nav-link.active {
-    background-color: #f0f0f0; /* Active background color */
-    color: blue; /* Active text color */
-  }
-  
+.gal-image >:hover{
+
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.2);
+
+}
+.gal-image{
+ row-gap: 30px
+ ;
+}

@@ -23,6 +23,36 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/css/gal.css">
+    <link rel="stylesheet" href="hero.css">
+    <style>
+        .image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+    </style>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -114,17 +144,51 @@
                             </div> 
                             <!-- Mobile Menu -->
                             <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
+                                <div  class="mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-20 text-center">
+                                <h2> Our Gallery</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h2 style="text-align: center; font-size: 25px; font-weight: 900;color: #09cc7f ;">Siddhar Arivalayam Charitable Trust</h2>
         <!-- Header End -->
     </header>
+<!-- extra -->
+ <<br>
+   <div style="text-align: center; border: 1px solid #09cc7f    ; background-color:#09cc7f; border-radius: 10px;" class="container gal-image ">
+    <br><br><br>
+    <img class="col-auto mb-5" style="height: 300px; width: 300px;"  src="./assets/img/gallery/im1.jpg" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;" src="./assets/img/gallery/im33.jpeg" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;"  src="./assets/img/gallery/im2.jpg" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;" src="./assets/img/gallery/rudh.jpg" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;" src="./assets/img/gallery/karuppu-kavani-rice.jpg" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;" src="./assets/img/gallery/elephant.avif" alt="">
+    <img class="col-auto mb-5" style="height: 300px;  width: 300px;" src="./assets/img/gallery/ele 2.jpg" alt="">
+    
+   </div>
+   <br><br><br>
+
+  
+<!-- extra -->
+
+
     <!-- gal start -->
-    <div class="site-section">
+    <!-- <div class="site-section">
         <div class="container">
           <div class="row">
             <div class="col-md-4">
@@ -204,7 +268,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     <!-- gal end -->
     <footer>
         <div class="footer-wrapper section-bg2" data-background="assets/img/gallery/footer_bg.png">
