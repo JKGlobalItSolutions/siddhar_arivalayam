@@ -50,11 +50,31 @@
   top: 0;
 }
 
-
-
-.active {
-  background-color: white;
-  color: white;
+/* Default styles for nav-links */
+#navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
- 
+.nav-link a {
+  display: block;
+  color: black; /* Default text color */
+  text-align: center;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.nav-link a:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+}
+
+.nav-link a.active {
+  background-color: #09cc7f; /* Background color for active link */
+  color: white; /* Text color for active link */
+}
+
+
+
+
