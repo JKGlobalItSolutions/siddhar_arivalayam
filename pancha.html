@@ -118,7 +118,92 @@
                                 <img height="300px" width="250px" style="border-radius: 10px;" src="./Images//Services/panchakshara image.png" alt="">
                                 <br>
                                 <br>
-                                <div style="margin-left: 50px;margin-right: 50px;" class="ali">
+                                <style>
+                                    .custom-range::-webkit-slider-thumb {
+                                        background: #24ac75;
+                                    }
+                                    .custom-range::-moz-range-thumb {
+                                        background: #24ac75;
+                                    }
+                                    .custom-range::-ms-thumb {
+                                        background: #24ac75;
+                                    }
+                                    .btn-custom {
+                                        background-color: #24ac75;
+                                        border-color: #24ac75;
+                                    }
+                                    .btn-custom:hover, .btn-custom:focus, .btn-custom:active {
+                                        background-color: #1e8f61;
+                                        border-color: #1e8f61;
+                                    }
+                                </style>
+                                  <div class="container mt-5">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6">
+                                            <div id="audio-player" class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Om Shiva Audio</h5>
+                                                    <audio id="audio" src="assets/audio/omShiva-Audio12Hours (1).mp3"></audio>
+                                                    <button id="play-pause" class="btn btn-custom text-white mb-3">
+                                                        <i class="fas fa-play" id="play-icon"></i>
+                                                        <i class="fas fa-pause d-none" id="pause-icon"></i>
+                                                    </button>
+                                                    <input type="range" class="custom-range w-100" id="seek-bar" value="0">
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <span id="current-time">0:00</span>
+                                                        <span id="duration">0:00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    const audio = document.getElementById('audio');
+                                    const playPauseButton = document.getElementById('play-pause');
+                                    const playIcon = document.getElementById('play-icon');
+                                    const pauseIcon = document.getElementById('pause-icon');
+                                    const seekBar = document.getElementById('seek-bar');
+                                    const currentTimeSpan = document.getElementById('current-time');
+                                    const durationSpan = document.getElementById('duration');
+                            
+                                    playPauseButton.addEventListener('click', togglePlayPause);
+                                    audio.addEventListener('timeupdate', updateTime);
+                                    audio.addEventListener('loadedmetadata', setDuration);
+                                    seekBar.addEventListener('input', seek);
+                            
+                                    function togglePlayPause() {
+                                        if (audio.paused) {
+                                            audio.play();
+                                            playIcon.classList.add('d-none');
+                                            pauseIcon.classList.remove('d-none');
+                                        } else {
+                                            audio.pause();
+                                            playIcon.classList.remove('d-none');
+                                            pauseIcon.classList.add('d-none');
+                                        }
+                                    }
+                            
+                                    function updateTime() {
+                                        const minutes = Math.floor(audio.currentTime / 60);
+                                        const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+                                        currentTimeSpan.textContent = `${minutes}:${seconds}`;
+                                        seekBar.value = (audio.currentTime / audio.duration) * 100 || 0;
+                                    }
+                            
+                                    function setDuration() {
+                                        const minutes = Math.floor(audio.duration / 60);
+                                        const seconds = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+                                        durationSpan.textContent = `${minutes}:${seconds}`;
+                                    }
+                            
+                                    function seek() {
+                                        const time = (seekBar.value / 100) * audio.duration;
+                                        audio.currentTime = time;
+                                    }
+                                </script>
+                                
+                                <div  class="text-left text-lg-center">
                                 <p >The word SIVAYANAMA is termed as Meignana panchakshara. SI represents
                                     Fire, VA means Vayu – Air, YA means Sky, NA means Land and MA
                                     means water.
@@ -195,126 +280,120 @@
                                         <p>ஓம் யவநசிம ஓம்! ஓம் நயமவசி ஓம்! ஓம் மநசியவ ஓம்! ஓம் சிமவநய ஓம்! ஓம் வசியமந ஓம்!</p>
                                         <p>ஓம் வயநசிம ஓம்! ஓம் யநமவசி ஓம்! ஓம் நமசியவ ஓம்! ஓம் மசிவநய ஓம்! ஓம் சிவயமந ஓம்!</p>
                                     </div>
-                                    
-
-    <br>
-    <br>
+                                    <div class="text-light py-4 rounded " >
+                                     <h2 class="p-4 text-light d-none d-lg-block "  style="background-color: #24ac75;font-size: 25px;" >   "Meignana Panchakshara" is the highest science given by Divine to Human Beings.</h2>
+                                     <h6 class="p-4 text-light d-lg-none  "  style="background-color: #24ac75;font-size: 15px;" >   "Meignana Panchakshara" is the highest science given by Divine to Human Beings.</h6>
+                                    </div>
     
                                     </p>
                                 </div>
-                                <br>
+                              
+                               
                              
                             </div>
                         </div>
                         <div class="text-center container mb-4 ">
-                            <h1 class="fw-bolder" >Meignana Panchakshara Guide available at Arunai Book Centre,Tiruvannamalai - ph:+91 9940701714,+91 9245332365</h1>
+                            <h1 class="fw-bolder  " >Meignana Panchakshara Guide available at Arunai Book Centre,Tiruvannamalai - ph:+91 9940701714,+91 9245332365</h1>
                             <img class="img-fluid w-50 " src="./Images//Services/book.jpg" alt="">
                         </div>
+                        <div class="text-center">
+                           <a target="_blank" href="https://www.youtube.com/@7thsense660">
+                            <h2 class="mb-4" >For more divinal songs click <span class="text-light p-1 px-3 rounded " style="border: 2px solid black;background-color: black;" >7th sense</span> youtube channel... </h2>
+                           </a>
+                        </div>
+                        <div class="text-center">
+                           <a target="_blank" href="https://www.youtube.com/watch?v=Tn6iL5AhgDs">
+                            <h2 class="mb-4" >Click Me! for Om Namashivaya song | Very Powerful | Shri Shiva Panchakshara Stotram </h2>
+                           </a>
+                        </div>
+                        <div class="text-center">
+                           <a target="_blank" href="https://www.youtube.com/watch?v=pv5nL8Zq1Uo">
+                            <h2 class="mb-4" >Click Me! for Very Powerful - Shri Shiva Panchakshara song | Om Namashivaya | 120 Unique Sound | Five Holy Letters</h2>
+                           </a>
+                        </div>
         <!-- Hero End -->
-        <!-- Our Cases Start -->
-        
+        <!-- Our Cases Start -->        
         <!-- Our Cases End -->
         </main>
-    <footer>
-        <div class="footer-wrapper section-bg2" data-background="assets/img/gallery/footer_bg.png">
-            <!-- Footer Top-->
-            <div class="footer-area footer-padding">
-                <div class="container">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <div class="footer-tittle">
-                                    <div class="footer-logo mb-20">
-                                        <a href="index.html"><img style="height: 100px;" src="assets/img/logo/file.png" alt=""></a>
-                                    </div>
-                                </div>
+        <footer>
+            <div class="footer-wrapper section-bg2" data-background="assets/img/gallery/footer_bg.png">
+                <!-- Footer Top-->
+                <div class="footer-area footer-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                    <a href="index.html">
+                                        <img style="height: 100px;" src="assets/img/logo/file.png" alt="">
+                                    </a>
                             </div>
-                        </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
+                            <div class="col-12 col-lg-4">
                                 <div class="footer-tittle">
                                     <h4>Contact Info</h4>
                                     <ul>
                                         <li>
-                                            <p>Address :Your address goes here, your demo address.</p>
+                                            <p>No 17 & 18,Shanmugam Pillai Nagar,kottampalayam Road,Vengikkal Village,Tiruvannamalai Taluk & District 606604</p>
                                         </li>
-                                        <li><a href="#">Phone : +8880 44338899</a></li>
-                                        <li><a href="#">Email : info@colorlib.com</a></li>
+                                        <li><a href="#">Phone : +919080868339, +919884909039, +91
+                                            9500043006.
+                                        </a></li>
+                                        <li><a href="#">Email :SiddharArivalayam@gmail.com</a></li>
                                     </ul>
-                                </div>
-
+                                </div> 
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Important Link</h4>
-                                    <ul>
-                                        <li><a href="#"> View Project</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Testimonial</a></li>
-                                        <li><a href="#">Proparties</a></li>
-                                        <li><a href="#">Support</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
+                            <div class="col-12 col-lg-4">
                                 <div class="footer-tittle">
                                     <h4>Newsletter</h4>
                                     <div class="footer-pera footer-pera2">
                                     <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
                                 </div>
-                                <!-- Form -->
-                                <div class="footer-form" >
-                                    <div id="mc_embed_signup">
-                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                        method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = ' Email Address '">
-                                            <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                class="email_icon newsletter-submit button-contactForm"><img src="assets/img/gallery/form.png" alt=""></button>
-                                            </div>
-                                            <div class="mt-10 info"></div>
-                                        </form>
+                                    <!-- Form -->
+                                    <div class="footer-form" >
+                                        <div id="mc_embed_signup">
+                                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                            method="get" class="subscribe_form relative mail_part">
+                                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = ' Email Address '">
+                                                <div class="form-icon">
+                                                    <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm"><img src="assets/img/gallery/form.png" alt=""></button>
+                                                </div>
+                                                <div class="mt-10 info"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    </div>
+                </div>
+                <!-- footer-bottom -->
+                <div class="footer-bottom-area">
+                    <div class="container">
+                        <div class="footer-border">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-xl-10 col-lg-9 ">
+                                    <div class="footer-copy-right">
+                                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                                     </div>
                                 </div>
+                                <div class="col-xl-2 col-lg-3">
+                                    <div class="footer-social f-right">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fas fa-globe"></i></a>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- footer-bottom -->
-            <div class="footer-bottom-area">
-                <div class="container">
-                    <div class="footer-border">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-xl-10 col-lg-9 ">
-                                <div class="footer-copy-right">
-                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3">
-                                <div class="footer-social f-right">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fas fa-globe"></i></a>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
     <!-- Scroll Up -->
     <div id="back-top" >
