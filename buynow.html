@@ -23,7 +23,15 @@
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">     
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("O-_M7bnUVYD45M_0N");
+        })();
+    </script>
 </head>
 <body>
     <!-- ? Preloader Start -->
@@ -129,7 +137,7 @@
                                 </div>
                             </div>
                             
-                            <form id="orderForm" onsubmit="return sendToWhatsApp()">
+                            <form id="orderForm">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -154,10 +162,6 @@
                                     <label for="packs" class="form-label">Number of Packs:</label>
                                     <input type="number" class="form-control" id="packs" name="packs" min="1" required>
                                 </div>
-                                <!-- <div class="mb-3">
-                                    <label for="payment_proof" class="form-label">Payment Confirmation (Image or PDF):</label>
-                                    <input type="file" class="form-control" id="payment_proof" name="payment_proof" accept="image/*,.pdf" required>
-                                </div> -->
                                 <div class="mb-3">
                                     <label for="payment_ref" class="form-label">Payment Reference Number:</label>
                                     <input type="text" class="form-control" id="payment_ref" name="payment_ref" required>
@@ -197,7 +201,7 @@
                                     <li><a href="#">Phone : +919080868339, +919884909039, +91
                                         9500043006.
                                     </a></li>
-                                    <li><a href="#">Email :SiddharArivalayam@gmail.com</a></li>
+                                    <li><a href="#">Email :<span class="__cf_email__" data-cfemail="9bc8f2fffff3fae9dae9f2edfaf7fae2faf6dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a></li>
                                 </ul>
                             </div> 
                         </div>
@@ -237,7 +241,7 @@
                             <div class="col-xl-10 col-lg-9 ">
                                 <div class="footer-copy-right">
                                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+  Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved 
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                                 </div>
                             </div>
@@ -302,51 +306,46 @@
     <!-- Jquery Plugins, main Jquery -->	
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/whatsapp-integration.js"></script>
 
-    <!-- WhatsApp Integration -->
     <script>
-    function sendToWhatsApp() {
-        // Get form data
-        const name = document.getElementById('name').value;
-        const address = document.getElementById('address').value;
-        const pincode = document.getElementById('pincode').value;
-        const phone = document.getElementById('phone').value;
-        const email = document.getElementById('email').value;
-        const packs = document.getElementById('packs').value;
-        const payment_ref = document.getElementById('payment_ref').value;
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        // Construct message
-        const message = `New Order:
-Name: ${name}
-Address: ${address}
-Pincode: ${pincode}
-Phone: ${phone}
-Email: ${email}
-Packs: ${packs}
-Payment Ref: ${payment_ref}`;
+            emailjs.sendForm('service_mpl4k8t', 'template_jtryqyi', this)
+                .then(function() {
+                    console.log('SUCCESS!');
+                    alert('Your order has been submitted successfully!');
+                    
+                    // Prepare WhatsApp message
+                    var name = document.getElementById('name').value;
+                    var address = document.getElementById('address').value;
+                    var pincode = document.getElementById('pincode').value;
+                    var phone = document.getElementById('phone').value;
+                    var email = document.getElementById('email').value;
+                    var packs = document.getElementById('packs').value;
+                    var payment = document.getElementById('payment_ref').value;
 
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
+                    var message = encodeURIComponent(
+                        `New Order:\n` +
+                        `Name: ${name}\n` +
+                        `Address: ${address}\n` +
+                        `Pincode: ${pincode}\n` +
+                        `Phone: ${phone}\n` +
+                        `Email: ${email}\n` +
+                        `Packs: ${packs}\n` +
+                        `Payment Ref: ${payment}`
+                    );
 
-        // WhatsApp API URL
-        const whatsappURL = `https://wa.me/919884909039?text=${encodedMessage}`;
+                    // Open WhatsApp with the order details
+                    var phoneNumber = '9884909039'; // WhatsApp number
+                    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
-        // Open WhatsApp in a new tab
-        window.open(whatsappURL, '_blank');
-
-        // Prevent form from submitting normally
-        return false;
-    }
-
-    // Add event listener for file input
-    document.getElementById('payment_proof').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            // You can handle file upload here if needed
-            console.log('File selected:', file.name);
-        }
-    });
+                    document.getElementById('orderForm').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to submit order. Please try again.');
+                });
+        });
     </script>
 </body>
 </html>
