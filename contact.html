@@ -228,61 +228,7 @@
                         </form>
                     </div>
 
-                    <script>
-                        (function () {
-                            emailjs.init("O-_M7bnUVYD45M_0N"); // Replace with your EmailJS user ID
-                        })();
-
-                        document.getElementById("contactForm").addEventListener("submit", function (event) {
-                            event.preventDefault(); // Prevent default form submission
-                            sendData(); // Call the sendData function
-                        });
-
-                        function sendData() {
-                            var message = document.getElementById("message").value;
-                            var name = document.getElementById("name").value;
-                            var email = document.getElementById("email").value;
-                            var subject = document.getElementById("subject").value;
-                            var address = document.getElementById("address").value;
-                            var pincode = document.getElementById("pincode").value;
-                            var phonenumber = document.getElementById("phonenumber").value;
-
-                            // Send WhatsApp message
-                            var whatsappNumber = "+9894924809"; // Your WhatsApp phone number
-                            var whatsappUrl = "https://wa.me/" + whatsappNumber + "?text=" +
-                                "Message: " + encodeURIComponent(message) + "%0a" +
-                                "Name: " + encodeURIComponent(name) + "%0a" +
-                                "Email: " + encodeURIComponent(email) + "%0a" +
-                                "Subject: " + encodeURIComponent(subject) + "%0a" +
-                                "Address: " + encodeURIComponent(address) + "%0a" +
-                                "Pincode: " + encodeURIComponent(pincode) + "%0a" +
-                                "Phone: " + encodeURIComponent(phonenumber) + "%0a" +
-                                "This message is sent via the contact form on our website.";
-
-                            window.open(whatsappUrl, '_blank').focus();
-
-                            // Send email
-                            var templateParams = {
-                                message: message,
-                                name: name,
-                                email: email,
-                                subject: subject,
-                                address: address,
-                                pincode: pincode,
-                                phonenumber: phonenumber,
-                            };
-
-                            emailjs.send("service_lfj0ke9", "template_vmnf87h", templateParams)
-                                .then(function (response) {
-                                    console.log("Email sent successfully", response.status, response.text);
-                                    alert("Your message has been sent successfully!");
-                                    document.getElementById("contactForm").reset(); // Reset form after successful submission
-                                }, function (error) {
-                                    console.error("Email sending failed", error);
-                                    alert("Oops! Something went wrong. Please try again later.");
-                                });
-                        }
-                    </script>
+               
 
                     <!-- form -->
                 </div>
